@@ -1,0 +1,5 @@
+{
+  "name": "docker_rails_demo_with_sqlite3",
+  "private": true,
+  "dependencies": {}
+}
