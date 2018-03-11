@@ -19,7 +19,8 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 ADD Gemfile* ./
-RUN gem install bundler && bundle install --jobs 20 --retry 5
+
+RUN gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/ && gem install bundler && bundle config mirror.https://rubygems.org https://gems.ruby-china.org && bundle install --jobs 20 --retry 5
 
 # Static copy the project code into the container, we don't recommend this method.
 # ADD . ./
