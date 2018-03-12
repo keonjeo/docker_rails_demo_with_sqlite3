@@ -1,5 +1,8 @@
 # How to use this project to setup your Rails application via docker simplely
 
+
+## Add some files into the project
+
  - add .dockerignore file into the root directory of the project
 
 ```
@@ -73,3 +76,44 @@ services:
     ports:
       - "3000:3000"
 ```
+
+## How to build the image for your Rails application via Dockerfile file
+
+- build the image via Dockerfile
+
+    `docker build -t docker_rails_demo_with_sqlite3:v1 .`
+
+- verify if image build successfully
+
+    `docker images`
+
+- how to run it as a container
+
+    `docker run --rm --name rails_server_with_sqlite3 -p 3000:3000 -v $(pwd):/var/www/app docker_rails_demo_with_sqlite3:v1 . `
+
+- how to go into the container
+
+    `docker exec -it container_id (container_name) bash`
+
+- how to create the database for the rails application
+
+    `docker exec -it container_id (container_name) bundle exec rails db:drop db:create db:migrate`
+
+
+## How to build the image for your Rails application via docker-compose.yml file
+
+- build the image via docker-compose.yml file
+
+    `docker-compose build`
+
+- how to start the server up as a container (no need to specify the -v option due to configure them in the docker-compose.yml file)
+
+    `docker-compose up`
+
+- how to go into the container
+
+    `docker exec -it container_id (container_name) bash`
+
+- how to create the database for the rails application
+
+    `docker exec -it container_id (container_name) bundle exec rails db:drop db:create db:migrate`
